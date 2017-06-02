@@ -6,3 +6,4 @@ if ($_SESSION ["login"]<>"1") {   //wenn Session Variable login nicht gleich 1 i
             header('Location: LogIn.php' );
     }
 ?>
+

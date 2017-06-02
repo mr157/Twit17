@@ -8,3 +8,5 @@ die('Weiter zum <a href="/~ks178/LogIn.php">LogIn-Bereich</a>');   //User muss s
 exit ();
 
 ?>
+
+
