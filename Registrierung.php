@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -17,28 +16,9 @@
     <link href="CSS.css" rel="stylesheet">
     <link href="Footer.css" rel="stylesheet">
 </head>
-
-
-
-
 <body>
 
 
-
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-</div>
 
 <!--Navigationsleiste-->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -50,7 +30,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Willkommen bei Twit</a>
+            <a class="navbar-brand" href="LogIn.php">Willkommen bei Twit17</a>
         </div>
     </div>
 </nav>
@@ -78,15 +58,6 @@ include "Backend/registrieren.php"
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Geschlecht</label>
-            <div class="form-group">
-                <div class="col-md-3">
-                    <label class="radio-inline"><input type="radio" name="geschlecht" value=w>weiblich</label>
-                    <label class="radio-inline"><input type="radio" name="geschlecht" value=m>männlich</label>
-                </div>
-            </div>
-        </div>
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="textinput">Geburtstag</label>
@@ -109,12 +80,10 @@ include "Backend/registrieren.php"
             <div class="col-md-4">
                 <input  name="passwort" type="password" placeholder="Passwort" class="form-control input-md">
                 <input  name="passwort2" type="password" placeholder="Passwort bestätigen" class="form-control input-md">
+                <hr>
+                <button type="submit" class="btn btn-success-registrieren2">Registrieren</button>
             </div>
         </div>
-
-        <button type="submit" class="btn btn-success-registrieren2">Registrieren</button>
-
-
 
     </form>
 </div>
@@ -128,7 +97,7 @@ include "Backend/registrieren.php"
 <!-- Footer -->
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">Impressum</p>
+        <p class="text-muted"><a href="Impressum.php"> Impressum</a></p>
     </div>
 </footer>
 
