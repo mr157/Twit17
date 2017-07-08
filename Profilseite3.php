@@ -29,12 +29,14 @@ $statement = $pdo->prepare("SELECT * FROM USER WHERE ID = :IDSESSION");
 $result = $statement->execute(array('IDSESSION' => $IDSESSION));
 $user = $statement->fetch();
 $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüßung in der Navigationsleiste angezeigt
+
+
 ?>
 
 
-
-
 <body>
+
+
 
 
 
@@ -78,12 +80,13 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
 <br>
 
 
-<!-- Ausgabe der Tweets -->
+
 <div class="container">
     <div class="row">
 
         <div class="col-md-8">
 
+            <!-- Ausgabe der Tweets -->
             <div class="tweet">
             <?php
             $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
@@ -115,19 +118,26 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
                     }
                     echo"</div></div>";
                     echo "<br><br>";
+
     }
+
+
 }
 ?>
+
 
 </div>
 
 
 
+
+
+
+
+
+
+
 </body>
-
-
-
-
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
