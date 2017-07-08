@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Die 3 Meta-Tags oben *müssen* zuerst im head stehen; jeglicher sonstiger head-Inhalt muss *nach* diesen Tags kommen -->
-    <title>Twitter</title>
+    <title>Twit17</title>
 
     <!-- Das neueste kompilierte und minimierte CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -41,20 +41,6 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
 
 
 
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-    <div class="col-md-1"></div>
-</div>
 
 
 <!--Navigationsleiste-->
@@ -72,15 +58,14 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="Profilseite1.php">Profil</a></li>
+                <li><a href="Galerie.php">Galerie</a></li>
+                <li><a href="Profilseite3.php">Tweets meiner Freunde</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Einstellungen <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="Profilverwaltung.php">Profilverwaltung</a></li>
+                        <li><a href="Profilverwaltung.php">Profilverwaltung &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-edit" aria-hidden="true"</span></a></li>
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Persönliche Informationen</li>
-                        <li><a href="#">Kontaktdaten</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="Backend/logout.php">Abmelden</a></li>
+                        <li><a href="Backend/logout.php">Abmelden &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out" aria-hidden="true"</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -145,142 +130,94 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
 
 
 
-<!--Seitenleisten auf der Profilseite-->
-<div class="col-xs-6 col-sm-3 sidebar-offcanvas follower" id="sidebar">
-    <div class="list-group">
-        <a href="#" class="list-group-item active">Nutzer, denen ich folge</a>
-        <a href="#" class="list-group-item">User 1</a>
-        <a href="#" class="list-group-item">User 2</a>
-        <a href="#" class="list-group-item">User 3</a>
-        <a href="#" class="list-group-item">User 4</a>
-        <a href="#" class="list-group-item">User 5</a>
+
+
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4">
+            <?php
+            include('Backend/session.php');
+            include ('Backend/userdata.php');
+
+            $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
+            $sql = "SELECT ID, vorname, nachname FROM USER ORDER BY ID";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            echo "<b>Liste aller registrierten User</b><br><br>";
+            while ($zeile = $query->fetchObject()) {
+                $sessionuserid = $zeile->ID;
+                if ($IDSESSION !== $sessionuserid) {
+                    echo "<span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"</span> &nbsp;Name: $zeile->vorname, $zeile->nachname &ensp; ID: <a href='Profilseite2.php?userid=$zeile->ID'>$zeile->ID</a><br><br>";
+                }
+            }
+            ?>
+        </div>
+
+        <?php
+        include('Backend/tweeten.php');
+        ?>
+
+        <div class="col-md-8">
+            <div class="formular">
+                <form enctype="multipart/form-data" action="?tweeten=1" method="post">
+                    <strong> Erstelle einen neuen Tweet</strong> <br/><br/>
+                    <input type="text" name="tw_headline" placeholder="Überschrift" style="width: 300px"/> <br> <br />
+                    <textarea name="tw_text" cols="25" rows="5" style="width: 300px"/> </textarea> <br>
+                    <input type="file" name="datei" /> <br>
+                    <input type="submit" value="Tweeten" class="btn-success"/>
+                </form>
+            </div>
+        </div>
+
     </div>
-</div>
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
-<div class="col-xs-6 col-sm-3 sidebar-offcanvas follower" id="sidebar">
-    <div class="list-group">
-        <a href="#" class="list-group-item active">Follower</a>
-        <a href="#" class="list-group-item">User 1</a>
-        <a href="#" class="list-group-item">User 2</a>
-        <a href="#" class="list-group-item">User 3</a>
-        <a href="#" class="list-group-item">User 4</a>
-        <a href="#" class="list-group-item">User 5</a>
+    <div class="row spacer">
+        <div class="col-md-3">
+
+
+
+
+        </div>
+        <div class="col-md-8.col">
+            <?php
+            $IDSESSION = $_SESSION ["user_id"];
+            $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
+            $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $IDSESSION";
+            $query = $pdo->prepare($sql);
+            $query->execute();
+            while ($zeile = $query->fetchObject()) {
+
+
+
+                echo " <div class=\" row panel panel-primary\">";
+                echo " <div class=\"panel-heading\">$zeile->tw_headline";
+                echo "<img class='col-md-1' src='upload/$zeile->datei' style='width: 5%; height: 5%;'/></div>";
+                echo " <div class=\"col-md-12 panel-body\">";
+                echo " <div class=\"col-md-10\">";
+                echo "      Autor: <a href='Profilseite2.php?userid=$zeile->tw_user_id'>$zeile->vorname</a><br>";
+                echo "      <i>$zeile->tw_date</i><br><br>";
+                echo "      $zeile->tw_text<br></div>";
+                $bild = $zeile->tw_file;
+                if (!empty($bild)) {
+                    echo "<div class='col-md-2'> <img src='upload/$zeile->tw_file' style='width: 100%; height: 100%;'></div>";
+                }
+                echo "</div></div>";
+                echo "<div><a href='Backend/tweeten_delete.php?loeschen=$zeile->ID_tweet'>Tweet löschen</a></div><br><br><br>";
+            }
+            ?>
+        </div>
     </div>
+
+
 </div>
 
 
 
 
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-
-<!-- Ausgabe Userliste -->
-<?php
-include('Backend/session.php');
-include ('Backend/userdata.php');
-
-$pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-$sql = "SELECT ID, vorname, nachname FROM USER ORDER BY ID";
-$query = $pdo->prepare($sql);
-$query->execute();
-echo "<div class=\"Suche1\"><b>Liste aller registrierten User:</b>";
-while ($zeile = $query->fetchObject()) {
-    echo "<div class=\"Suche2\">Name: $zeile->vorname, $zeile->nachname &ensp; ID: <a href='Profilseite2.php?userid=$zeile->ID'>$zeile->ID</a></div>";
-}
-?>
-
-
-
-
-<!-- Backend php-file einbinden -->
-<?php
-include('Backend/tweeten.php');
-?>
-
-<!--Formular von Tweets-->
-<div class="formular">
-    <form enctype="multipart/form-data" action="?tweeten=1" method="post">
-        Überschrift:<br />
-        <input type="text" name="tw_headline" style="width: 300px"/> <br> <br />
-        <textarea name="tw_text" cols="25" rows="5" style="width: 300px"/> </textarea> <br>
-        <input type="file" name="datei" /> <br>
-        <input type="submit" value="Tweeten" class="btn-success"/>
-        </form>
-</div>
-
-
-
-
-<!--Ausgabe von Tweets-->
-<div class="tweet">
-    <?php
-    $IDSESSION = $_SESSION ["user_id"];
-    $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-    $sql = "SELECT * FROM TWEET WHERE tw_user_id = $IDSESSION";
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    while ($zeile = $query->fetchObject()) {
-        echo "<div class=\"tweet-einzeln\"><h5 class='headline'>$zeile->tw_headline</h5>";
-        echo "Autor: <a href='Profilseite2.php?userid=$zeile->tw_user_id'>$zeile->tw_user_id</a><br>";
-        echo "<i>$zeile->tw_date</i><br><br>";
-        echo "$zeile->tw_text<br>";
-        $bild = $zeile->tw_file;
-        if (!empty($bild)) {
-            echo "<img src='upload/$zeile->tw_file' style='width: 25%; height: 25%; margin-left: 368px; margin-top: -60px; margin-bottom: 10px'>";
-        }
-        echo"</div>";
-        echo "<a href='Backend/tweeten_delete.php?loeschen=$zeile->ID_tweet'>Diesen Tweet löschen</a><br><br>";
-
-    }
-    ?>
-</div>
-
-
-
-
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<nav>
-    <ul class="pagination">
-        <li>
-            <a href="#" aria-label="Zurück">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-            <a href="#" aria-label="Weiter">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
 
 
 

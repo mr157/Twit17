@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Die 3 Meta-Tags oben *müssen* zuerst im head stehen; jeglicher sonstiger head-Inhalt muss *nach* diesen Tags kommen -->
-    <title>Twit17</title>
+    <title>Twitter2</title>
 
     <!-- Das neueste kompilierte und minimierte CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -22,7 +22,6 @@
 include('Backend/session.php');
 include ('Backend/userdata.php');
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-$fremduserid = $_GET ['userid'];
 $IDSESSION = $_SESSION ["user_id"];
 
 
@@ -31,30 +30,20 @@ $result = $statement->execute(array('IDSESSION' => $IDSESSION));
 $user = $statement->fetch();
 $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüßung in der Navigationsleiste angezeigt
 
-$sql = "SELECT * FROM USER WHERE ID = :fremduserid";
-$query = $pdo->prepare($sql);
-$query->execute(array('fremduserid' => $fremduserid));
-while ($zeile = $query->fetchObject()) {
-    $profilbildurl = $zeile->datei;
-    $fremduser = $zeile->ID;
-}
-
-
-
-
-
-$pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-$sql = ("SELECT * FROM FOLLOWER WHERE ID_user = :IDSESSION and ID_follower = :fremduser");
-$query = $pdo->prepare($sql);
-$query->execute(array('IDSESSION' => $IDSESSION, 'fremduser' => $fremduser));
-while ($zeile = $query->fetchObject()) {
-    $beziehungvorhanden = 1; }
 
 ?>
 
 
 <body>
 
+
+
+<br><br><br><br>
+
+
+<br>
+<legend></legend>
+<br>
 
 
 
@@ -90,103 +79,36 @@ while ($zeile = $query->fetchObject()) {
 </nav>
 
 
-<br><br><br><br>
-
-
-<!-- Profilbild -->
-<div class="container">
-    <div class="row">
-        <div class="profile-header-container">
-            <div class="profile-header-img">
-                <?php
-                echo "<img class='img-circle' src='upload/$profilbildurl' style='width: 15%; height: 15%;'/>";?>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="well well-sm">
-                <div class="media">
-                    <div class="media-body">
-
-
-                        <?php if ($beziehungvorhanden == 0) {
-                        echo '<a href="Backend/folgen.php?userid=' . $fremduser .'" class="btn btn-xs btn-default follow"><span class="glyphicon glyphicon-heart"></span> Follow </a>';
-                        } ?>
-
-                        <?php if ($beziehungvorhanden == 1) {
-                            echo '<a href="Backend/entfolgen.php?userid=' . $fremduser .'" class="btn btn-xs btn-default entfollow"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow </a>';
-                        } ?>
-
-
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<br>
-<legend></legend>
-<br>
-
-
-
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-8">
-
-            <!-- Ausgabe der Tweets -->
-            <div class="tweet">
-                <?php
-                $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-                $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";
-                $query = $pdo->prepare($sql);
-                $query->execute();
-                while ($zeile = $query->fetchObject()) {
-
-
-
-                    echo " <div class=\" row panel panel-primary\">";
-                    echo " <div class=\"panel-heading\">$zeile->tw_headline";
-                    echo "<img class='col-md-1' src='upload/$zeile->datei' style='width: 8%; height: 8%;'/></div>";
-                    echo " <div class=\"col-md-12 panel-body\">";
-                    echo " <div class=\"col-md-10\">";
-                    echo "      Autor: <a href='Profilseite2.php?userid=$zeile->tw_user_id'>$zeile->vorname</a><br>";
-                    echo "      <i>$zeile->tw_date</i><br><br>";
-                    echo "      $zeile->tw_text<br></div>";
-                    $bild = $zeile->tw_file;
-                    if (!empty($bild)) {
-                        echo "<div class='col-md-2'> <img src='upload/$zeile->tw_file' style='width: 100%; height: 100%;'></div>";
-                    }
-                    echo "</div></div>";
-
-                }
-                ?>
-            </div>
-
-        </div>
-     </div>
-</div>
 
 
 
 
+<div class="container-fluid">
+<div class="row">
 
 
+<?php
+include('Backend/session.php');
+include ('Backend/userdata.php');
+
+$IDSESSION = $_SESSION ["user_id"];
+$pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
+$sql = "SELECT * FROM TWEET WHERE tw_user_id = $IDSESSION";
+$query = $pdo->prepare($sql);
+$query->execute();
+while ($zeile = $query->fetchObject()) {
+    $bild = $zeile->tw_file;
+    if (!empty($bild)) {
+
+        echo "<div class=\"col-md-4 spacer\"> <img class='img-responsive' src='upload/$zeile->tw_file'></div>";
 
 
+    }
+}
 
+?>
 
-
-
+</div></div>
 
 
 
@@ -205,3 +127,4 @@ while ($zeile = $query->fetchObject()) {
 
 
 </html>
+
