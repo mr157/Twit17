@@ -14,14 +14,20 @@
 }
 
 
+
+.spacer {
+    margin-top: 50px;
+}
+
+
 .btn-success {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
-    border-color: black; !important;
+    border-color: black !important;
 }
 
 
 .btn-success:hover {
-    border-color: black;
+    border-color: black !important;
  }
 
 
@@ -43,44 +49,23 @@
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
-    margin-left: 406px; !important;
-    margin-top: -20px; !important;
+
 }
 
 .btn-success-registrieren2 {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
-    margin-top: 20px;
-    margin-left: 391px;
-}
 
-.side-bar {
-    background-color: darkgrey;
-    border: 2px black;
-    width: 250px;
-    height: 250px;
-    margin-top: 20px;
-    margin-left: 10px;
 }
 
 
-.side-bar-user {
-    margin-left: 30px;
-    padding-top: 20px;
-}
 
 h3 {
     margin-left: 10px;
     padding-top: 10px;
 }
 
-.pagination {
-    position: sticky;
-    bottom: 0;
-    margin-left: 290px;
-    margin-top: 400px;
-}
 
 .btn-danger {
     background-image: linear-gradient(to bottom,grey 100%,grey 100%); !important;
@@ -97,7 +82,7 @@ h3 {
 }
 
 .btn-success:hover {
-    background-color: gray;
+    background-color: gray !important;
 }
 
 .form-horizontal {
@@ -106,10 +91,6 @@ h3 {
 
 .img-circle {
     border-radius: 5%;
-}
-
-.row {
-    margin-left: -62px;
 }
 
 .col-sm-3 {
@@ -125,22 +106,6 @@ padding-right: 22px;
 }
 
 
-.formular {
-    margin-left: 450px;
-    margin-top: -642px;
-}
-
-.tweet {
-    margin-left: 450px;
-    margin-right: 300px;
-    margin-top: 50px;
-}
-
-
-.follower {
-    z-index: -50; !important;
-
-}
 
 .tweet-einzeln {
     border: 2px solid  #2b669a;
@@ -297,6 +262,9 @@ padding-right: 22px;
 }
 
 
+.abstandhalter {
+    margin-top: 20px;
+}
 
 
 
