@@ -105,7 +105,7 @@ include('nav_bar.php')
 
 
 
-                    </div>
+                    </div>d
                 </div>
             </div>
         </div>
