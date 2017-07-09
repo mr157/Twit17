@@ -3,7 +3,6 @@
     z-index: 1;
 }
 
-
 .navbar-brand {
     color: white !important;
 }
@@ -15,19 +14,14 @@
 }
 
 
-.spacer {
-    margin-top: 50px;
-}
-
-
 .btn-success {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
-    border-color: black !important;
+    border-color: black; !important;
 }
 
 
 .btn-success:hover {
-    border-color: black !important;
+    border-color: black;
  }
 
 
@@ -35,61 +29,145 @@
     margin-left: 20px;
 }
 
-
 .btn-success-registrieren {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
+    position:  fixed; !important;
+    left: 1190px; !important;
+    top: 8px; !important;
+    z-index: 2;
 }
-
 
 .btn-success-löschen {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
+    margin-left: 406px; !important;
+    margin-top: -20px; !important;
 }
 
+.btn-success-registrieren2 {
+    background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
+    border-color: black; !important;
+    color: white;
+    margin-top: 20px;
+    margin-left: 391px;
+}
+
+.side-bar {
+    background-color: darkgrey;
+    border: 2px black;
+    width: 250px;
+    height: 250px;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+
+.side-bar-user {
+    margin-left: 30px;
+    padding-top: 20px;
+}
+
+h3 {
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
+.pagination {
+    position: sticky;
+    bottom: 0;
+    margin-left: 290px;
+    margin-top: 400px;
+}
 
 .btn-danger {
     background-image: linear-gradient(to bottom,grey 100%,grey 100%); !important;
     border-color: black; !important;
 }
 
+.buttons_einstellungen {
+    padding-left: 453px;
+    padding-top: 70px;
+}
 
 .btn-danger:hover {
     background-color: gray; !important;
 }
 
-
 .btn-success:hover {
-    background-color: gray !important;
+    background-color: gray;
 }
-
 
 .form-horizontal {
     margin-top: 60px;
 }
 
-
 .img-circle {
     border-radius: 5%;
 }
 
+.row {
+    margin-left: -62px;
+}
 
-.follow:hover {
-    color: darkgreen;
+.col-sm-3 {
+    padding-right: 24px;
+}
+
+.col-xs-6 {
+padding-right: 22px;
+}
+
+.col-sm-3 {
+    width: 23%;
 }
 
 
-.entfollow:hover {
-    color: darkred;
+.formular {
+    margin-left: 450px;
+    margin-top: -642px;
+}
+
+.tweet {
+    margin-left: 450px;
+    margin-right: 300px;
+    margin-top: 50px;
 }
 
 
-.abstandhalter {
-    margin-top: 20px;
+.follower {
+    z-index: -50; !important;
+
 }
 
+.tweet-einzeln {
+    border: 2px solid  #2b669a;
+    padding-left: 20px;
+}
+
+.headline {
+    background-image: linear-gradient(to bottom, #337ab7 0, #2b669a 100%);
+    color: white;
+    padding-left: 10px;
+}
+
+.suchleiste {
+    margin-left: -1005px;
+}
+
+.formular2 {
+    padding-left: -50px;
+}
+
+.Suche1 {
+    padding-left: 16px;
+}
+
+.Suche2 {
+    padding-left: 0px;
+}
 
 .well {
     margin-left: 200px;
@@ -97,11 +175,20 @@
     margin-top: -42px;
 }
 
+.follow:hover {
+    color: darkgreen;
+}
+
+.entfollow:hover {
+    color: darkred;
+}
 
 
 
 
 /*          Karusel        */
+
+
 .fade-carousel {
     position: relative;
     height: 85.2vh;
@@ -175,6 +262,8 @@
     background-color: #080d15;
     opacity: .3;
 }
+
+
 
 /********************************/
 /*       Slides backgrounds     */

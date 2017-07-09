@@ -1,26 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <!-- Das neueste kompilierte und minimierte CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- Optionales Theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <!-- Das neueste kompilierte und minimierte JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-
-<!--Navigationsleiste-->
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"></a>
-        </div>
-    </div>
-</nav>
-
 <?php
 session_start();
 include ("userdata.php");
@@ -41,15 +18,19 @@ if(isset($_GET['login'])) {   //Prüfung: alle Parameter müssen übergeben werd
     }if (password_verify($passwort, $user['passwort'])) {   //Prüfung: User-Passwort = eingegebenes Passwort?
         $_SESSION ['user_id'] = $user['ID'];   //ID des Users wird als Session-Variable user_id definiert
         $_SESSION ['login'] = "1";
-        header('location:Profilseite1.php');
+            die('Login erfolgreich.<br> Weiter zu <a href="Profilseite1.php">deinem Profil</a>');
     } else {
-        $errorMessage = "<br><br><br><div class=\"alert alert-warning alert-dismissible\" role=\"alert\">
-        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>
-        <strong>Achtung!</strong> E-Mail oder Passwort war ungültig.</div>";
+        $errorMessage = "<br><br><br><br><br><br>E-Mail oder Passwort war ungültig<br>";
     }
+
 }
 ?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
 
 <?php
 if(isset($errorMessage)) {
