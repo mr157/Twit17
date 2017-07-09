@@ -178,7 +178,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
                     echo "<div class='col-md-2'> <img src='upload/$zeile->tw_file' style='width: 100%; height: 100%;'></div>";
                 }
                 echo "</div></div>";
-                echo "<div><a href='Backend/tweeten_delete.php?loeschen=$zeile->ID_tweet'>Tweet löschen</a></div><br><br><br>";
+                echo "<div><a href='Backend/tweeten_delete.php?loeschen=$zeile->ID_tweet'>Tweet löschen</a></div><br><br><br>";   //Übergabe der Tweet-ID zum Löschen-Button, Weiterleitung zur Backend Datei tweeten_delete.php
             }
             ?>
         </div>

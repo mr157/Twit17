@@ -13,10 +13,10 @@ include ("userdata.php");
     <title>Profilverwaltung</title>
 </head>
 
-
 <body>
 
-<?PHP
+
+<?php
 include('Backend/session.php');
 ?>
 
@@ -26,7 +26,7 @@ include('Backend/session.php');
 $IDSESSION = $_SESSION ["user_id"];   //Variable IDSESSION wird mit dem Wert der angemeldeten user_id definiert
 
 
-if(isset($_GET['verwalten'])) {
+if(isset($_GET['verwalten'])) {   //Prüfung: alle Parameter müssen übergeben werden
     $error = false;
     $email = $_POST['email'];
     $email1 = $_POST['email1'];
@@ -52,9 +52,9 @@ if(isset($_GET['verwalten'])) {
     $passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);   //neues Passwort wird als Hash-Wert der Variable zugewiesen
 
 
-    if (!$error) {
+    if (!$error) {   //wenn alle bisherigen Kriterien erfüllt werden, wird folgender Datenbankzugriff erzeugt
         $pdo = new PDO($dsn, $dbuser, $dbpass);  //neuer Datenbankzugriff wird erzeugt
-        $statement = $pdo->prepare("SELECT * FROM USER WHERE ID = :IDSESSION");
+        $statement = $pdo->prepare("SELECT * FROM USER WHERE ID = :IDSESSION");   //Auswahl der Datensätze des angemeldeten Users
         $result = $statement->execute(array('IDSESSION' => $IDSESSION));
         $user = $statement->fetch();
     }
@@ -68,7 +68,7 @@ if(isset($_GET['verwalten'])) {
             $result = $statement->execute(array('email' => $email1, 'passwort' => $passwort_hash, 'IDSESSION' => $IDSESSION));
             echo "<br><br><br><br>Daten erfolgreich geändert.";
     } else {
-        $errorMessage = "<br><br><br><br><br><br>E-Mail oder Passwort war ungültig.<br>";
+        echo "<br><br><br><br><br><br>Deine angegebene E-Mail oder dein Passwort war ungültig.<br>";
     }
 }
 

@@ -1,10 +1,13 @@
 <?php
 
-
 include ("userdata.php");
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +15,9 @@ $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 </head>
 <body>
 
+
+
 <?php
-
-
 
 if(isset($_GET['tweeten'])) {    //Prüfung: alle Parameter müssen übergeben werden
     $error = false;
@@ -23,12 +26,12 @@ if(isset($_GET['tweeten'])) {    //Prüfung: alle Parameter müssen übergeben w
 
 
     if(strlen($tw_headline) == 0) {   //Prüfung: wurde eine Überschrift eingegeben?
-        echo 'Bitte eine Überschrift eingeben<br>';
+        echo 'Bitte eine Überschrift eingeben.<br>';
         $error = true;
     }
 
     if(strlen($tw_text) == 0) {   //Prüfung: wurde ein Tweet-Text eingegeben?
-        echo 'Bitte einen Tweet-Text eingeben<br>';
+        echo 'Bitte einen Tweet-Text eingeben.<br>';
         $error = true;
     }
 
@@ -38,13 +41,11 @@ if(isset($_GET['tweeten'])) {    //Prüfung: alle Parameter müssen übergeben w
     if(!$error) {
         $tw_user_id = $_SESSION ["user_id"];
         $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-        $statement = $pdo->prepare("INSERT INTO TWEET (tw_headline, tw_text, tw_user_id, tw_date, tw_file) VALUES (:tw_headline, :tw_text, :tw_user_id, NOW(), :tw_file)");
+        $statement = $pdo->prepare("INSERT INTO TWEET (tw_headline, tw_text, tw_user_id, tw_date, tw_file) VALUES (:tw_headline, :tw_text, :tw_user_id, NOW(), :tw_file)");   //Tweet Inhalte werden den Parametern übergeben und in der Datenbank abgespeichert
         $result = $statement->execute(array('tw_headline' => $tw_headline, 'tw_text' => $tw_text, 'tw_user_id' => $tw_user_id, 'tw_file' => $dateiURL));
         $user = $statement->fetch();
     }
 }
-
-
 
 ?>
 

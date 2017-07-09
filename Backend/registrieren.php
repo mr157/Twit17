@@ -53,7 +53,7 @@ if(isset($_GET['registrieren'])) {    //Prüfung: alle Parameter müssen überge
     }
 
 
-    if(!$error) {
+    if(!$error) {    //wenn alle bisherigen Kriterien erfüllt werden, wird folgender Datenbankzugriff erzeugt
         $statement = $pdo->prepare("SELECT * FROM USER WHERE email = :email");   //neue Datenbankabfrage wird vorbereitet
         $result = $statement->execute(array('email' => $email));
         $user = $statement->fetch();
@@ -66,7 +66,7 @@ if(isset($_GET['registrieren'])) {    //Prüfung: alle Parameter müssen überge
 
 
     if(!$error) {
-        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);   //Passwort wird in einen Hash umgewandelt
+        $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);   //Passwort wird in einen Hash-Wert umgewandelt
         $statement = $pdo->prepare("INSERT INTO USER (vorname, nachname, geburtstag, email, passwort) VALUES (:vorname, :nachname, :geburtstag, :email, :passwort)");
         $result = $statement->execute(array('vorname' => $vorname, 'nachname' => $nachname, 'geburtstag' => $geburtstag, 'email' => $email, 'passwort' => $passwort_hash));   //User Datensätze werden in die Datenbank gespeichert
 

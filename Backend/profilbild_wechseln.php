@@ -2,7 +2,7 @@
 
 
 include "session.php";
-$tw_user_id = $_SESSION ["user_id"];
+$tw_user_id = $_SESSION ["user_id"];  //ID des eingeloggten Users wird der Variable tw_user_id definiert
 
 
 $upload_folder = '../upload/';
@@ -17,7 +17,7 @@ include("userdata.php");
 
 try {
     $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-    $statement = $pdo->prepare("UPDATE USER SET datei = :datei WHERE ID = :twid");
+    $statement = $pdo->prepare("UPDATE USER SET datei = :datei WHERE ID = :twid");  //Profilbild des eingeloggten Users wird geändert
     $result = $statement->execute(array('datei' => $dateiURL, 'twid' => $tw_user_id));
     header ('location: ../Profilseite1.php');
 } catch (PDOException $e) {

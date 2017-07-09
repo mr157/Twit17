@@ -31,15 +31,12 @@ while ($zeile = $query->fetchObject()) {
 
 
 
-
-
 //Wenn keine Beziehung besteht, wird eine Beziehung angelegt
 if ($beziehungvorhanden == 0) {
     $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
     $statement = $pdo->prepare("INSERT INTO FOLLOWER (ID_user, ID_follower) VALUES (:IDSESSION, :fremduser)");
     $result = $statement->execute(array('IDSESSION' => $IDSESSION, 'fremduser' => $fremduser));
     $user = $statement->fetch();
-
     echo "<div class=\"alert alert-success\" role=\"alert\">Du folgst nun dieser Person. <a href='/~ks178/Profilseite1.php'>Zurück zum Profil</a> </div>";
 }
 
