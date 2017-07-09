@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Die 3 Meta-Tags oben *müssen* zuerst im head stehen; jeglicher sonstiger head-Inhalt muss *nach* diesen Tags kommen -->
-    <title>Twit17</title>
+    <title>Twit17 - Anmeldeseite</title>
 
     <!-- Das neueste kompilierte und minimierte CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -36,10 +36,10 @@ include "Backend/login.php"
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Willkommen bei Twit17</a>
+            <a class="navbar-brand" href="LogIn.php">Willkommen bei Twit17</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" action="?login=1" method="post">
+            <form class="navbar-form navbar-right" action="?anmelden=1" method="post">
                 <div class="form-group">
                     <input type="text" placeholder="Email" name="email" class="form-control">
                 </div>

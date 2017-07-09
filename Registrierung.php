@@ -43,7 +43,7 @@ include "Backend/registrieren.php"
 
 <!--Registrierungsforumlar-->
 <div class="container">
-    <form class="form-horizontal" action="?register=1" method="post">
+    <form class="form-horizontal" action="?registrieren=1" method="post">
         <legend>Profil anlegen</legend>
 
 
