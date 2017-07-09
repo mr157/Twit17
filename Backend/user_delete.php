@@ -1,5 +1,6 @@
 <?php
 
+
 include('session.php');
 include ("userdata.php");
 $IDSESSION = $_SESSION ["user_id"];   //Variable IDSESSION wird mit dem Wert der angemeldeten user_id definiert
@@ -11,7 +12,7 @@ $IDSESSION = $_SESSION ["user_id"];   //Variable IDSESSION wird mit dem Wert der
     $statement = $pdo->prepare("DELETE FROM USER WHERE ID = :IDSESSION");   //Datenbankzugriff wird vorbereitet (Lösche alle Werte des Users mit der angemeldeten ID)
     $result = $statement->execute(array('IDSESSION' => $IDSESSION));
     $user = $statement->fetch();
-    echo 'Dein Account wurde erfolgreich gelöscht. <a href="../LogIn.php"</a>';
-
+    echo "<a href=\"../LogIn.php\>Schade! Du hast deinen Account erfolgreich gelöscht - weiter zur Startseite.</a>";
+    exit ();
 
 ?>

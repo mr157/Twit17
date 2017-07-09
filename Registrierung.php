@@ -81,7 +81,7 @@ include "Backend/registrieren.php"
                 <input  name="passwort" type="password" placeholder="Passwort" class="form-control input-md">
                 <input  name="passwort2" type="password" placeholder="Passwort bestätigen" class="form-control input-md">
                 <hr>
-                <button type="submit" class="btn btn-success-registrieren2">Registrieren</button>
+                <button type="submit" class="btn btn-success-registrieren">Registrieren</button>
             </div>
         </div>
 
@@ -100,6 +100,12 @@ include "Backend/registrieren.php"
         <p class="text-muted"><a href="Impressum.php"> Impressum</a></p>
     </div>
 </footer>
+
+
+
+
+
+
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

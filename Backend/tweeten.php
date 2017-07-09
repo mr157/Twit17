@@ -13,7 +13,8 @@ $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 <body>
 
 <?php
-$showFormular = true;
+
+
 
 if(isset($_GET['tweeten'])) {    //Prüfung: alle Parameter müssen übergeben werden
     $error = false;
@@ -43,17 +44,13 @@ if(isset($_GET['tweeten'])) {    //Prüfung: alle Parameter müssen übergeben w
     }
 }
 
-if($showFormular) {
-    ?>
-
-
-
-    <?php
-}
-
 
 
 ?>
+
+
+
+
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns="http://www.w3.org/1999/html">
+<html lang="de" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -113,7 +113,7 @@ while ($zeile = $query->fetchObject()) {
 
 
         <!--Button Profilbild wechseln-->
-        <button type="button" class="btn btn-success-registrieren2" data-toggle="modal" data-target="#Profilbildwechseln">Profilbild ändern</button>
+        <button type="button" class="btn btn-success-registrieren" data-toggle="modal" data-target="#Profilbildwechseln">Profilbild ändern</button>
 
 
 
@@ -154,7 +154,7 @@ while ($zeile = $query->fetchObject()) {
                 <input  name="passwort1" type="password" placeholder="neues Passwort" class="form-control input-md">
                 <input  name="passwort2" type="password" placeholder="neues Passwort bestätigen" class="form-control input-md">
                 <hr>
-                <button type="submit" class="btn btn-success-registrieren2">Speichern</button><br><br><br>
+                <button type="submit" class="btn btn-success-registrieren">Speichern</button><br><br><br>
                 <a href="#"data-toggle="modal" data-target="#Accountdelete">Account löschen </a>
 
                 <!-- Modal -->
@@ -171,8 +171,8 @@ while ($zeile = $query->fetchObject()) {
                                 <p>Willst du wirklich deinen Account löschen?</p>
                             </div>
                             <div class="modal-footer">
-                                <a href="Backend/user_delete.php"> <button type="button" class="btn btn-success-registrieren2"  data-dismiss="modal">Account löschen</button></a>
-                                <button type="button" class="btn btn-success-registrieren2" data-dismiss="modal">Abbrechen</button>
+                                <input type="button"  class="btn btn-success btn-registrieren" onclick="location.href='Backend/user_delete.php';" value="Account löschen" </input>
+                                <button type="button" class="btn btn-success-registrieren" data-dismiss="modal">Abbrechen</button>
                             </div>
                         </div>
 
@@ -181,12 +181,15 @@ while ($zeile = $query->fetchObject()) {
             </div>
         </div>
         </div>
+    </form>
 </div>
 
 
-</form>
 
-</div>
+
+
+
+
 
 
 
@@ -206,7 +209,7 @@ include "Backend/session.php"
 
 
 
-
+<!--Profilbild ändern-->
 <div id="Profilbildwechseln" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -220,11 +223,11 @@ include "Backend/session.php"
                 <form enctype="multipart/form-data" action="Backend/profilbild_wechseln.php" method="post">
                     <strong>Profilbild ändern:</strong><br><br>
                     <input type="file" name="datei" /> <br>
-                    <input type="submit" value="Bild hochladen" class="btn btn-success-registrieren2"/>
+                    <input type="submit" value="Bild hochladen" class="btn btn-success-registrieren"/>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success-registrieren2" data-dismiss="modal">Abbrechen</button>
+                <button type="button" class="btn btn-success-registrieren" data-dismiss="modal">Abbrechen</button>
             </div>
         </div>
 

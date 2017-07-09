@@ -3,9 +3,10 @@
 session_start();
 include ("userdata.php");
 
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@ include('Backend/session.php');
 
 
 <?php
-$showFormular = true;
+
 $IDSESSION = $_SESSION ["user_id"];   //Variable IDSESSION wird mit dem Wert der angemeldeten user_id definiert
 
 
@@ -65,22 +66,17 @@ if(isset($_GET['verwalten'])) {
             $pdo = new PDO($dsn, $dbuser, $dbpass);
             $statement = $pdo->prepare("UPDATE USER SET email= :email, passwort= :passwort WHERE ID = :IDSESSION");  //neue E-Mail und neues Passwort werden für die aktuellen Werte (zugehörig zur angemeldeten ID) überschrieben
             $result = $statement->execute(array('email' => $email1, 'passwort' => $passwort_hash, 'IDSESSION' => $IDSESSION));
-            echo "<br><br><br><br><br><br>Erfolgreich!";
+            echo "<br><br><br><br>Daten erfolgreich geändert.";
     } else {
-        $errorMessage = "<br><br><br><br><br><br>E-Mail oder Passwort war ungültig<br>";
+        $errorMessage = "<br><br><br><br><br><br>E-Mail oder Passwort war ungültig.<br>";
     }
 }
 
 
-
-if($showFormular) {
-    ?>
-    <?php
-}
-
-
-
 ?>
+
+
+
 
 </body>
 </html>

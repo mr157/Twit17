@@ -142,6 +142,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
             include('Backend/session.php');
             include ('Backend/userdata.php');
 
+            //Liste aller registrierten User (eingeloggter User wird nicht angezeigt)
             $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
             $sql = "SELECT ID, vorname, nachname FROM USER ORDER BY ID";
             $query = $pdo->prepare($sql);
@@ -149,7 +150,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
             echo "<b>Liste aller registrierten User</b><br><br>";
             while ($zeile = $query->fetchObject()) {
                 $sessionuserid = $zeile->ID;
-                if ($IDSESSION !== $sessionuserid) {
+                if ($IDSESSION !== $sessionuserid) {   //eingeloggter User wird nicht angezeigt
                     echo "<span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"</span> &nbsp;Name: $zeile->vorname, $zeile->nachname &ensp; ID: <a href='Profilseite2.php?userid=$zeile->ID'>$zeile->ID</a><br><br>";
                 }
             }
@@ -160,6 +161,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
         include('Backend/tweeten.php');
         ?>
 
+        <!-- Formular zur Ausgabe von Tweets -->
         <div class="col-md-8">
             <div class="formular">
                 <form enctype="multipart/form-data" action="?tweeten=1" method="post">
@@ -167,7 +169,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
                     <input type="text" name="tw_headline" placeholder="Überschrift" style="width: 300px"/> <br> <br />
                     <textarea name="tw_text" cols="25" rows="5" style="width: 300px"/> </textarea> <br>
                     <input type="file" name="datei" /> <br>
-                    <input type="submit" value="Tweeten" class="btn-success"/>
+                    <input type="submit" value="Tweeten" class="btn btn-success-registrieren"/>
                 </form>
             </div>
         </div>
@@ -176,33 +178,28 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
 
 
     <div class="row spacer">
-        <div class="col-md-3">
 
-
-
-
-        </div>
         <div class="col-md-8.col">
             <?php
             $IDSESSION = $_SESSION ["user_id"];
-            $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-            $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $IDSESSION";
+            $pdo = new PDO($dsn, $dbuser, $dbpass);
+            $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $IDSESSION";   //INNER JOIN zur zztl. Ausgabe des Profilbildes des Users in den Tweets
             $query = $pdo->prepare($sql);
             $query->execute();
             while ($zeile = $query->fetchObject()) {
 
 
-
+                //Ausgabe der Tweets
                 echo " <div class=\" row panel panel-primary\">";
                 echo " <div class=\"panel-heading\">$zeile->tw_headline";
-                echo "<img class='col-md-1' src='upload/$zeile->datei' style='width: 5%; height: 5%;'/></div>";
+                echo " <img class='col-md-1' src='upload/$zeile->datei' style='width: 5%; height: 5%;'/></div>";
                 echo " <div class=\"col-md-12 panel-body\">";
                 echo " <div class=\"col-md-10\">";
-                echo "      Autor: <a href='Profilseite2.php?userid=$zeile->tw_user_id'>$zeile->vorname</a><br>";
+                echo "      Autor: <a href='Profilseite1.php?userid=$zeile->tw_user_id'>$zeile->vorname</a><br>";
                 echo "      <i>$zeile->tw_date</i><br><br>";
                 echo "      $zeile->tw_text<br></div>";
                 $bild = $zeile->tw_file;
-                if (!empty($bild)) {
+                if (!empty($bild) AND $bild !==".") {
                     echo "<div class='col-md-2'> <img src='upload/$zeile->tw_file' style='width: 100%; height: 100%;'></div>";
                 }
                 echo "</div></div>";

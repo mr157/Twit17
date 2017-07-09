@@ -14,9 +14,7 @@
 session_start();
 $_SESSION = array();
 session_destroy();   //Session wird zerstört
-echo "<div class=\"alert alert-success\" role=\"alert\">
-        <a href=\"../Profilseite1.php\" class=\"alert-link\">Sie haben sich ausgeloggt. Weiter zum Login-Bereich.</a>
-        </div>";
+echo "<a href=\"../Profilseite1.php\">Sie haben sich ausgeloggt. Weiter zum Login-Bereich.</a>";
 exit ();
 
 ?>

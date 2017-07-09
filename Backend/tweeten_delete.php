@@ -9,7 +9,7 @@ if(isset($_GET['loeschen'])) {
 
 
     $pdo = new PDO($dsn, $dbuser, $dbpass);   //neuer Datenbankzugriff wird erzeugt
-    $statement = $pdo->prepare("DELETE FROM TWEET WHERE ID_tweet = :tweetID");   //Datenbankzugriff wird vorbereitet (Lösche alle Werte des Users mit der angemeldeten ID)
+    $statement = $pdo->prepare("DELETE FROM TWEET WHERE ID_tweet = :tweetID");   //Auswahl des zu löschenden Tweets
     $result = $statement->execute(array('tweetID' => $tweetID));
     $user = $statement->fetch();
 }

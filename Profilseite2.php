@@ -18,11 +18,14 @@
 
 
 
+
 <?php
+
 include('Backend/session.php');
 include ('Backend/userdata.php');
+
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-$fremduserid = $_GET ['userid'];
+$fremduserid = $_GET ['userid'];          //Fremduser-ID wird mit Methode GET geholt
 $IDSESSION = $_SESSION ["user_id"];
 
 
@@ -31,6 +34,8 @@ $result = $statement->execute(array('IDSESSION' => $IDSESSION));
 $user = $statement->fetch();
 $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüßung in der Navigationsleiste angezeigt
 
+
+//Tweets des Fremdusers werden geladen und angezeigt
 $sql = "SELECT * FROM USER WHERE ID = :fremduserid";
 $query = $pdo->prepare($sql);
 $query->execute(array('fremduserid' => $fremduserid));
@@ -42,8 +47,8 @@ while ($zeile = $query->fetchObject()) {
 
 
 
-
-$pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
+//Follow-Beziehung von eingeloggtem User und Fremduser wird untersucht
+$pdo = new PDO($dsn, $dbuser, $dbpass);
 $sql = ("SELECT * FROM FOLLOWER WHERE ID_user = :IDSESSION and ID_follower = :fremduser");
 $query = $pdo->prepare($sql);
 $query->execute(array('IDSESSION' => $IDSESSION, 'fremduser' => $fremduser));
@@ -90,7 +95,9 @@ while ($zeile = $query->fetchObject()) {
 </nav>
 
 
+
 <br><br><br><br>
+
 
 
 <!-- Profilbild -->
@@ -105,6 +112,8 @@ while ($zeile = $query->fetchObject()) {
     </div>
 </div>
 
+
+<!-- Follow und UnFollow Button -->
 <div class="container">
     <div class="row">
         <div class="col-md-4">
@@ -113,11 +122,11 @@ while ($zeile = $query->fetchObject()) {
                     <div class="media-body">
 
 
-                        <?php if ($beziehungvorhanden == 0) {
+                        <?php if ($beziehungvorhanden == 0) {   //wenn keine Beziehung vorhanden ist
                         echo '<a href="Backend/folgen.php?userid=' . $fremduser .'" class="btn btn-xs btn-default follow"><span class="glyphicon glyphicon-heart"></span> Follow </a>';
                         } ?>
 
-                        <?php if ($beziehungvorhanden == 1) {
+                        <?php if ($beziehungvorhanden == 1) {   //wenn bereits eine Beziehung vorhanden ist
                             echo '<a href="Backend/entfolgen.php?userid=' . $fremduser .'" class="btn btn-xs btn-default entfollow"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow </a>';
                         } ?>
 
@@ -143,11 +152,11 @@ while ($zeile = $query->fetchObject()) {
 
         <div class="col-md-8">
 
-            <!-- Ausgabe der Tweets -->
+            <!-- Ausgabe der Tweets des Fremdusers -->
             <div class="tweet">
                 <?php
                 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-                $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";
+                $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";   //INNER JOIN zur zztl. Ausgabe des Profilbildes des Fremdusers in den Tweets
                 $query = $pdo->prepare($sql);
                 $query->execute();
                 while ($zeile = $query->fetchObject()) {
@@ -175,13 +184,6 @@ while ($zeile = $query->fetchObject()) {
         </div>
      </div>
 </div>
-
-
-
-
-
-
-
 
 
 

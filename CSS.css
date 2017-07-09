@@ -3,6 +3,7 @@
     z-index: 1;
 }
 
+
 .navbar-brand {
     color: white !important;
 }
@@ -12,7 +13,6 @@
     float: right !important;
     margin-right: 50px;
 }
-
 
 
 .spacer {
@@ -35,35 +35,18 @@
     margin-left: 20px;
 }
 
+
 .btn-success-registrieren {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
-    position:  fixed; !important;
-    left: 1190px; !important;
-    top: 8px; !important;
-    z-index: 2;
 }
+
 
 .btn-success-löschen {
     background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
     border-color: black; !important;
     color: white;
-
-}
-
-.btn-success-registrieren2 {
-    background-image: linear-gradient(to bottom,grey 0,grey 100%) !important;
-    border-color: black; !important;
-    color: white;
-
-}
-
-
-
-h3 {
-    margin-left: 10px;
-    padding-top: 10px;
 }
 
 
@@ -72,67 +55,41 @@ h3 {
     border-color: black; !important;
 }
 
-.buttons_einstellungen {
-    padding-left: 453px;
-    padding-top: 70px;
-}
 
 .btn-danger:hover {
     background-color: gray; !important;
 }
 
+
 .btn-success:hover {
     background-color: gray !important;
 }
+
 
 .form-horizontal {
     margin-top: 60px;
 }
 
+
 .img-circle {
     border-radius: 5%;
 }
 
-.col-sm-3 {
-    padding-right: 24px;
-}
 
-.col-xs-6 {
-padding-right: 22px;
-}
-
-.col-sm-3 {
-    width: 23%;
+.follow:hover {
+    color: darkgreen;
 }
 
 
-
-.tweet-einzeln {
-    border: 2px solid  #2b669a;
-    padding-left: 20px;
+.entfollow:hover {
+    color: darkred;
 }
 
-.headline {
-    background-image: linear-gradient(to bottom, #337ab7 0, #2b669a 100%);
-    color: white;
-    padding-left: 10px;
+
+.abstandhalter {
+    margin-top: 20px;
 }
 
-.suchleiste {
-    margin-left: -1005px;
-}
-
-.formular2 {
-    padding-left: -50px;
-}
-
-.Suche1 {
-    padding-left: 16px;
-}
-
-.Suche2 {
-    padding-left: 0px;
-}
 
 .well {
     margin-left: 200px;
@@ -140,20 +97,11 @@ padding-right: 22px;
     margin-top: -42px;
 }
 
-.follow:hover {
-    color: darkgreen;
-}
-
-.entfollow:hover {
-    color: darkred;
-}
 
 
 
 
 /*          Karusel        */
-
-
 .fade-carousel {
     position: relative;
     height: 85.2vh;
@@ -228,8 +176,6 @@ padding-right: 22px;
     opacity: .3;
 }
 
-
-
 /********************************/
 /*       Slides backgrounds     */
 /********************************/
@@ -262,9 +208,6 @@ padding-right: 22px;
 }
 
 
-.abstandhalter {
-    margin-top: 20px;
-}
 
 
 

@@ -13,7 +13,7 @@ $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 <body>
 
 <?php
-$showFormular = true;
+
 
 if(isset($_GET['register'])) {    //Prüfung: alle Parameter müssen übergeben werden
     $error = false;
@@ -65,14 +65,6 @@ if(isset($_GET['register'])) {    //Prüfung: alle Parameter müssen übergeben 
             echo '<br><br><br>Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
         }
     }
-}
-
-if($showFormular) {
-    ?>
-
-
-
-    <?php
 }
 
 

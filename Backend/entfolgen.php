@@ -12,6 +12,7 @@
 
 <?php
 
+
 include('session.php');
 include('userdata.php');
 $IDSESSION = $_SESSION ["user_id"];
@@ -25,3 +26,6 @@ $result = $statement->execute(array('IDSESSION' => $IDSESSION, 'fremduser' => $f
 $user = $statement->fetch();
 
 echo "<div class=\"alert alert-success\" role=\"alert\">Du folgst dieser Person nicht mehr. <a href='/~ks178/Profilseite1.php'>Zurück zum Profil</a> </div>";
+
+
+?>

@@ -32,7 +32,7 @@
 
 
 
-
+<!--Inhalt des Impressums-->
 <div class="container">
     <div class="row">
         <br><br><br><br>
@@ -55,11 +55,14 @@
 
 </div>
 
+
+
+<!--Tag, um Content zu separieren-->
 <hr>
 
 
 
-
+<!--Scrollspy Navigation-->
 <!DOCTYPE html>
 <html>
 <head>

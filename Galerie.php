@@ -19,8 +19,10 @@
 
 
 <?php
+
 include('Backend/session.php');
 include ('Backend/userdata.php');
+
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 $IDSESSION = $_SESSION ["user_id"];
 
@@ -30,20 +32,18 @@ $result = $statement->execute(array('IDSESSION' => $IDSESSION));
 $user = $statement->fetch();
 $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüßung in der Navigationsleiste angezeigt
 
-
 ?>
+
 
 
 <body>
 
 
 
-<br><br><br><br>
+<br><br><br>
 
 
-<br>
-<legend></legend>
-<br>
+
 
 
 
@@ -83,8 +83,9 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
 
 
 
-<div class="container-fluid">
-<div class="row">
+<div class="container">
+    <legend>Meine Galerie</legend>
+    <div class="row">
 
 
 <?php
@@ -93,15 +94,14 @@ include ('Backend/userdata.php');
 
 $IDSESSION = $_SESSION ["user_id"];
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-$sql = "SELECT * FROM TWEET WHERE tw_user_id = $IDSESSION";
+$sql = "SELECT * FROM TWEET WHERE tw_user_id = $IDSESSION";   //Inhalte der eingeloggten USER-ID werden ausgewählt
 $query = $pdo->prepare($sql);
 $query->execute();
 while ($zeile = $query->fetchObject()) {
     $bild = $zeile->tw_file;
-    if (!empty($bild)) {
+    if (!empty($bild AND $bild !==".")) {
 
-        echo "<div class=\"col-md-4 spacer\"> <img class='img-responsive' src='upload/$zeile->tw_file'></div>";
-
+        echo "<div class=\"col-md-4 spacer\"> <img class='img-responsive' src='upload/$zeile->tw_file'></div>";   //Ausgabe aller hochgeladenen Bild-Dateien
 
     }
 }

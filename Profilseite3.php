@@ -71,22 +71,20 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
 </nav>
 
 
-<br><br><br><br>
+<br><br><br>
 
 
 
-<br>
-<legend></legend>
-<br>
+
 
 
 
 <div class="container">
-    <div class="row">
+    <legend>Tweets meiner Freunde</legend>
 
         <div class="col-md-8">
 
-            <!-- Ausgabe der Tweets -->
+            <!-- Ausgabe der Tweets aller User, denen ich folge -->
             <div class="tweet">
             <?php
             $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
@@ -95,21 +93,23 @@ $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüß
             $query->execute();
             while ($zeile = $query->fetchObject()) {
 
-                $fremduserid = $zeile->ID_follower;
+                $fremduserid = $zeile->ID_follower;   //Definition aller User-IDs, denen ich folge
 
 
                 $pdo2 = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-                $sql2 = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";
+                $sql2 = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";   //Auswahl aller Tweets der User, denen ich folge
                 $query2 = $pdo2->prepare($sql2);
                 $query2->execute();
                 while ($zeile2 = $query2->fetchObject()) {
 
+
+                    //Ausgabe der Tweets aller User, denen ich folge
                     echo " <div class=\" row panel panel-primary\">";
                     echo " <div class=\"panel-heading\">$zeile2->tw_headline";
                     echo "<img class='col-md-1' src='upload/$zeile2->datei' style='width: 8%; height: 8%;'/></div>";
                     echo " <div class=\"col-md-12 panel-body\">";
                     echo " <div class=\"col-md-10\">";
-                    echo " Autor: <a href='Profilseite2.php?userid=$zeile->tw_user_id'>$zeile2->vorname</a><br>";
+                    echo " Autor: <a href='Profilseite2.php?userid=$zeile2->tw_user_id'>$zeile2->vorname</a><br>";
                     echo "      <i>$zeile2->tw_date</i><br><br>";
                     echo "      $zeile2->tw_text<br></div>";
                     $bild = $zeile2->tw_file;
