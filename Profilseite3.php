@@ -23,18 +23,16 @@ include('Backend/session.php');
 include ('Backend/userdata.php');
 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
 $IDSESSION = $_SESSION ["user_id"];
-
-
 $statement = $pdo->prepare("SELECT * FROM USER WHERE ID = :IDSESSION");
 $result = $statement->execute(array('IDSESSION' => $IDSESSION));
 $user = $statement->fetch();
 $vorname = $user['vorname'];  //Vorname des eingeloggten Users wird zur Begrüßung in der Navigationsleiste angezeigt
-
-
 ?>
 
 
 <body>
+
+
 
 
 
@@ -49,30 +47,29 @@ include('nav_bar.php')
 
 
 
+
+
+
+
 <div class="container">
     <legend>Tweets meiner Freunde</legend>
 
-        <div class="col-md-8">
+    <div class="col-md-8">
 
-            <!-- Ausgabe der Tweets aller User, denen ich folge -->
-            <div class="tweet">
+        <!-- Ausgabe der Tweets aller User, denen ich folge -->
+        <div class="tweet">
             <?php
             $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
             $sql = "SELECT * FROM FOLLOWER WHERE ID_user = $IDSESSION";
             $query = $pdo->prepare($sql);
             $query->execute();
             while ($zeile = $query->fetchObject()) {
-
                 $fremduserid = $zeile->ID_follower;   //Definition aller User-IDs, denen ich folge
-
-
                 $pdo2 = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
                 $sql2 = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";   //Auswahl aller Tweets der User, denen ich folge
                 $query2 = $pdo2->prepare($sql2);
                 $query2->execute();
                 while ($zeile2 = $query2->fetchObject()) {
-
-
                     //Ausgabe der Tweets aller User, denen ich folge
                     echo " <div class=\" row panel panel-primary\">";
                     echo " <div class=\"panel-heading\">$zeile2->tw_headline";
@@ -88,15 +85,12 @@ include('nav_bar.php')
                     }
                     echo"</div></div>";
                     echo "<br><br>";
-
-    }
-
-
-}
-?>
+                }
+            }
+            ?>
 
 
-</div>
+        </div>
 
 
 
