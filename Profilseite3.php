@@ -49,10 +49,6 @@ include('nav_bar.php')
 
 
 
-
-
-
-
 <div class="container">
     <legend>Tweets meiner Freunde</legend>
 
