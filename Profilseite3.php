@@ -60,7 +60,7 @@ include('nav_bar.php')
         <div class="tweet">
             <?php
             $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-            $sql = "SELECT * FROM FOLLOWER WHERE ID_user = $IDSESSION";
+            $sql = "SELECT * FROM FOLLOWER WHERE ID_user = $IDSESSION";         //Auswahl aller Datensätze, bei denen die User-ID der eingeloggten Session-ID entspricht
             $query = $pdo->prepare($sql);
             $query->execute();
             while ($zeile = $query->fetchObject()) {

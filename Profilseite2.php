@@ -129,7 +129,7 @@ include('nav_bar.php')
             <div class="tweet">
                 <?php
                 $pdo = new PDO($dsn, $dbuser, $dbpass);   //Datenbankzugriff wird erzeugt
-                $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";   //INNER JOIN zur zztl. Ausgabe des Profilbildes des Fremdusers in den Tweets
+                $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $fremduserid";   //Auswahl aller Tweets, bei denen die tw_user_id der Fremduser-ID entspricht
                 $query = $pdo->prepare($sql);
                 $query->execute();
                 while ($zeile = $query->fetchObject()) {

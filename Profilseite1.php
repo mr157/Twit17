@@ -88,12 +88,12 @@ while ($zeile = $query->fetchObject()) {
 
 <!-- Tweet-Datei Upload-Funktion -->
 <?php
-$upload_folder = 'upload/';
-$filename = pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME);
-$extension = strtolower(pathinfo($_FILES['datei']['name'], PATHINFO_EXTENSION));
-$new_path = $upload_folder.$filename.'.'.$extension;
-$dateiURL = $filename.'.'.$extension;
-move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
+$upload_folder = 'upload/';                                                             //Ordnerverzeichnis, in welchem die Dateien abgelegt werden
+$filename = pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME);                      //Definition des Datei-Namens
+$extension = strtolower(pathinfo($_FILES['datei']['name'], PATHINFO_EXTENSION));        //String wird mit Kleinbuchstaben wiedergegeben, Erweiterung um Extension
+$new_path = $upload_folder.$filename.'.'.$extension;                                    //Definition und Erweiterung des Datei-Pfades
+$dateiURL = $filename.'.'.$extension;                                                   //dateiURL definiert die Bezeichnung des Dateiuploads
+move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);                            //hochgeladene Datei wird in Upload-Ordner verschoben
 ?>
 
 
@@ -124,8 +124,8 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
             $query->execute();
             echo "<b>Liste aller registrierten User</b><br><br>";
             while ($zeile = $query->fetchObject()) {
-                $sessionuserid = $zeile->ID;
-                if ($IDSESSION !== $sessionuserid) {   //eingeloggter User wird nicht angezeigt
+                $sessionuserid = $zeile->ID;            //ID in Datensätzen wird mit $sessionuserid definiert
+                if ($IDSESSION !== $sessionuserid) {   //eingeloggter User wird nicht in der Liste ausgegeben
                     echo "<span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"</span> &nbsp;Name: $zeile->vorname, $zeile->nachname &ensp; ID: <a href='Profilseite2.php?userid=$zeile->ID'>$zeile->ID</a><br><br>";
                 }
             }
@@ -158,7 +158,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);
             <?php
             $IDSESSION = $_SESSION ["user_id"];
             $pdo = new PDO($dsn, $dbuser, $dbpass);
-            $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $IDSESSION";   //INNER JOIN zur zztl. Ausgabe des Profilbildes des Users in den Tweets
+            $sql = "SELECT * FROM TWEET INNER JOIN USER ON TWEET.tw_user_id=USER.ID WHERE TWEET.tw_user_id = $IDSESSION";       //Auswahl aller Tweets, bei denen die tw_user_id der eingeloggten Session-ID entspricht
             $query = $pdo->prepare($sql);
             $query->execute();
             while ($zeile = $query->fetchObject()) {
