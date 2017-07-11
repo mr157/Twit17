@@ -68,6 +68,8 @@
 
 .form-horizontal {
     margin-top: 60px;
+    margin-button: 100px;
+    z-index: 50;
 }
 
 
