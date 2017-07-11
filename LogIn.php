@@ -73,8 +73,8 @@ include "Backend/login.php"
             <div class="slide-1"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>Bleibe immer informiert!</h1>
-                    <h3>Registrier dich am besten gleich</h3>
+                    <h1>Bleib informiert!</h1>
+                    <h3>Registrier dich gleich</h3>
                 </hgroup>
             </div>
         </div>
