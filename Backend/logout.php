@@ -14,8 +14,9 @@
 session_start();
 $_SESSION = array();
 session_destroy();   //Session wird zerstört
-echo "<a href=\"../Profilseite1.php\">Sie haben sich ausgeloggt. Weiter zum Login-Bereich.</a>";
+header('location:../Profilseite1.php');
 exit ();
+
 
 ?>
 
