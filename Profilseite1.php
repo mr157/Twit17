@@ -74,14 +74,16 @@ while ($zeile = $query->fetchObject()) {
 <!-- Profilbild anzeigen -->
 <div class="container">
     <div class="row">
+        <div class="col-md-12">
         <div class="profile-header-container">
             <div class="profile-header-img">
                 <?php
                 echo "<img class='img-circle' src='upload/$profilbildurl' style='width: 15%; height: 15%;'/>";?>
             </div>
         </div>
+        </div>
     </div>
-</div>
+
 
 
 
@@ -109,7 +111,7 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);                    
 
 
 
-<div class="container">
+
     <div class="row">
 
         <div class="col-md-4">
@@ -152,9 +154,16 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);                    
     </div>
 
 
-    <div class="row spacer">
 
-        <div class="col-md-8.col">
+<!-- Abstandhalter zwischen zwei Rows -->
+<div class="row spacer"></div>
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
             <?php
             $IDSESSION = $_SESSION ["user_id"];
             $pdo = new PDO($dsn, $dbuser, $dbpass);
@@ -181,11 +190,16 @@ move_uploaded_file($_FILES['datei']['tmp_name'], $new_path);                    
                 echo "<div><a href='Backend/tweeten_delete.php?loeschen=$zeile->ID_tweet'>Tweet löschen</a></div><br><br><br>";   //Übergabe der Tweet-ID zum Löschen-Button, Weiterleitung zur Backend Datei tweeten_delete.php
             }
             ?>
+
         </div>
     </div>
-
-
 </div>
+
+
+
+
+
+
 
 
 

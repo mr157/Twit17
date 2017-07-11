@@ -105,7 +105,7 @@ include('nav_bar.php')
 
 
 
-                    </div>d
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@ include('nav_bar.php')
                 while ($zeile = $query->fetchObject()) {
 
 
-
+                    //Ausgabe der Tweets
                     echo " <div class=\" row panel panel-primary\">";
                     echo " <div class=\"panel-heading\">$zeile->tw_headline";
                     echo "<img class='col-md-1' src='upload/$zeile->datei' style='width: 8%; height: 8%;'/></div>";
