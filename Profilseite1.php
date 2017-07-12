@@ -88,7 +88,7 @@ while ($zeile = $query->fetchObject()) {
 
 
 
-<!-- Tweet-Datei Upload-Funktion -->
+<!-- Profilbild Upload-Funktion -->
 <?php
 $upload_folder = 'upload/';                                                             //Ordnerverzeichnis, in welchem die Dateien abgelegt werden
 $filename = pathinfo($_FILES['datei']['name'], PATHINFO_FILENAME);                      //Definition des Datei-Namens

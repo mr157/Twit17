@@ -145,7 +145,7 @@ include('nav_bar.php')
                     echo "      <i>$zeile->tw_date</i><br><br>";
                     echo "      $zeile->tw_text<br></div>";
                     $bild = $zeile->tw_file;
-                    if (!empty($bild)) {
+                    if (!empty($bild AND $bild !==".")) {
                         echo "<div class='col-md-2'> <img src='upload/$zeile->tw_file' style='width: 100%; height: 100%;'></div>";
                     }
                     echo "</div></div>";
