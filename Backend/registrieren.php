@@ -35,11 +35,6 @@ if(isset($_GET['registrieren'])) {    //Prüfung: alle Parameter müssen überge
     }
 
 
-    if(!filter_var($geburtstag, FILTER_VALIDATE_INT)) {   //Prüfung: handelt es sich um eine E-Mail Adresse?
-        echo '<br><br><br>Bitte geben Sie ein gültiges Geburtsdatum in Ziffern ein.<br>';
-        $error = true;
-    }
-
 
     if(strlen($passwort) == 0) {   //Prüfung: wurde ein Passwort eingegeben?
         echo 'Bitte geben Sie ein Passwort ein.<br>';
